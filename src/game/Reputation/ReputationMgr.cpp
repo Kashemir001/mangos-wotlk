@@ -22,6 +22,10 @@
 #include "Server/WorldPacket.h"
 #include "Globals/ObjectMgr.h"
 
+#ifdef ENABLE_MODULES
+#include "ModuleMgr.h"
+#endif
+
 const int32 ReputationMgr::PointsInRank[MAX_REPUTATION_RANK] = {36000, 3000, 3000, 3000, 6000, 12000, 21000, 1000};
 
 ReputationRank ReputationMgr::ReputationToRank(int32 standing)
@@ -407,6 +411,10 @@ bool ReputationMgr::SetOneFactionReputation(FactionEntry const* factionEntry, in
         achievementManager.UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_GAIN_EXALTED_REPUTATION, factionEntry->ID);
         achievementManager.UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_GAIN_REVERED_REPUTATION, factionEntry->ID);
         achievementManager.UpdateAchievementCriteria(ACHIEVEMENT_CRITERIA_TYPE_GAIN_HONORED_REPUTATION, factionEntry->ID);
+
+#ifdef ENABLE_MODULES
+        sModuleMgr.OnSetReputation(m_player, factionEntry, standing, incremental);
+#endif
 
         if (rankNew > rankOld)
             return true;

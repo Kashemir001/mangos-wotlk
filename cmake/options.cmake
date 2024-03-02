@@ -15,6 +15,14 @@ option(BUILD_GIT_ID                         "Build git_id"                      
 option(BUILD_DOCS                           "Build documentation with doxygen"          OFF)
 option(CMAKE_INTERPROCEDURAL_OPTIMIZATION   "Enable link-time optimizations"            OFF)
 option(BUILD_DEPRECATED_PLAYERBOT           "Build previous version of Playerbot mod"   OFF)
+# Modules
+option(BUILD_MODULES                        "Build module system"                       OFF)
+foreach(MODULE_NAME ${MODULE_NAMES})
+  if(NOT ${MODULE_NAME} STREQUAL "MODULES")
+    string(TOLOWER ${MODULE_NAME} LOWER_MODULE_NAME)
+	option(BUILD_MODULE_${MODULE_NAME}        "Build ${LOWER_MODULE_NAME} module"         OFF)
+  endif()
+endforeach()
 set(DEV_BINARY_DIR ${CMAKE_BINARY_DIR} CACHE STRING "Executable directory on Windows")
 
 # TODO: options that should be checked/created:
@@ -37,6 +45,7 @@ message(STATUS
     BUILD_LOGIN_SERVER      Build login server (auth server)
     BUILD_EXTRACTORS        Build map/dbc/vmap/mmap extractor
     BUILD_PLAYERBOTS        Build Playerbots mod				 
+    BUILD_MODULES			      Build module system
     BUILD_AHBOT             Build Auction House Bot mod
     BUILD_METRICS           Build Metrics, generate data for Grafana
     BUILD_RECASTDEMOMOD     Build map/vmap/mmap viewer
