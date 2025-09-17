@@ -2304,7 +2304,7 @@ void Spell::SetTargetMap(SpellEffectIndex effIndex, uint32 targetMode, bool targ
                 m_caster->GetNearPoint2d(x, y, dis + m_caster->GetObjectBoundingRadius(), m_caster->GetOrientation() + angle_offset);
 
                 GridMapLiquidData liqData;
-                if (!m_caster->GetTerrain()->IsInWater(x, y, m_caster->GetTerrain()->GetWaterLevel(x, y, m_caster->GetPositionZ()) - 1.0f, &liqData))
+                if (!m_caster->GetTerrain()->IsInWater(x, y, m_caster->GetTerrain()->GetWaterLevel(x, y, m_caster->GetPositionZ()) - 1.0f, &liqData, 0.6f))
                 {
                     result = SPELL_FAILED_NOT_FISHABLE;
                     continue;
@@ -2317,6 +2317,8 @@ void Spell::SetTargetMap(SpellEffectIndex effIndex, uint32 targetMode, bool targ
                     result = SPELL_FAILED_LINE_OF_SIGHT;
                     continue;
                 }
+                result = SPELL_CAST_OK;
+                break;
             }
             if (result != SPELL_CAST_OK)
             {
