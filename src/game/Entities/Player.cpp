@@ -2017,8 +2017,8 @@ bool Player::Unmount(bool auraExists, int32 auraAmount, bool isFlyingAura)
 
     if (height != newHeight)
         SendCollisionHeightUpdate(newHeight);
-    else
-        ResolvePendingUnmount();
+
+    ResolvePendingUnmount();
 
     return true;
 }
