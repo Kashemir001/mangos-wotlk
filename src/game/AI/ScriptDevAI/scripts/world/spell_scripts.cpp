@@ -1095,6 +1095,7 @@ void AddSC_spell_scripts()
     RegisterSpellScript<IllusionPassive>("spell_illusion_passive");
     RegisterSpellScript<RandomAggro>("spell_random_aggro");
     RegisterSpellScript<RandomAggro1000000>("spell_random_aggro_1000000");
-    RegisterSpellScript<InvisibleForAlive>("spell_shroud_of_death");
+    //Commenting this fixes visibility of Anthion, Bodley. Brakes visibility of Franclorn Forgewright(always visible)
+    //RegisterSpellScript<InvisibleForAlive>("spell_shroud_of_death");
     RegisterSpellScript<SummonWaterElemental>("spell_summon_water_elemental");
 }
