@@ -1986,8 +1986,8 @@ bool Player::BuildEnumData(QueryResult* result, WorldPacket& p_data)
 
 bool Player::Mount(uint32 displayid, bool auraExists, int32 auraAmount, bool isFlyingAura, bool pendingTaxi)
 {
-    if (m_pendingMountId)
-        return false;
+    // if (m_pendingMountId)
+    //     return false;
 
     float height = GetCollisionHeight();
     uint32 newMountId = GetOverridenMountId() ? GetOverridenMountId() : displayid;
